@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
+from wechatG import WechatG
 import urllib2
-import json
 import time
+import json
 import os
-class wechatqy(object):
+class Wechatqy(WechatG):
 	"微信企业号的类"
 	def __init__(self):
 		self.token=""
-		pass
+	
 	#config
 	def conf(self,corpid,corpsecret):
 		self.corpid=corpid
@@ -49,13 +50,14 @@ class wechatqy(object):
 				return self.token
 			else:
 				print "请先配置corpid和corpsecret"
-
+	def send(self):
+		
 if __name__=='__main__':
 	#print "调用自己"
-	wechat=wechatqy()
+	wechat=Wechatqy()
 	wechat.conf("wx650b23fa694c8ff7","w_oV6aNTMaNUrOjwah0zupDxnWeYmtDR3QiUcD3Uqf584CpwYPB-U79QuhLLD_eJ")
 	print wechat.access_token()
-
+	wechat.test()
 
 
 
