@@ -11,3 +11,7 @@ class WechatG(object):
 		postData=json.dumps(data,ensure_ascii=False)
 		req=urllib2.urlopen(url,postData)
 		return req.read()
+	#get获取数据
+	def get(self,url):
+		getData=urllib2.urlopen(url)
+		return getData.read()
