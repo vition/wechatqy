@@ -23,7 +23,7 @@ class Wechatqy(WechatG):
 		tokenJson=token.read()
 		tokenDict=eval(tokenJson)
 		tokenDict["expires_in"]=7200+nowTime
-		tokenFile=open("access_token","a+")
+		tokenFile=open("access_token","w+")
 		tokenFile.write(json.dumps(tokenDict))
 		return tokenDict["access_token"]
 	
@@ -51,13 +51,13 @@ class Wechatqy(WechatG):
 			else:
 				print "请先配置corpid和corpsecret"
 	def send(self):
-		
+		pass		
 if __name__=='__main__':
 	#print "调用自己"
 	wechat=Wechatqy()
 	wechat.conf("wx650b23fa694c8ff7","w_oV6aNTMaNUrOjwah0zupDxnWeYmtDR3QiUcD3Uqf584CpwYPB-U79QuhLLD_eJ")
 	print wechat.access_token()
-	wechat.test()
+	#wechat.test()
 
 
 
