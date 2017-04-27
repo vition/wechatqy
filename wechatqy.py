@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
-from wechatG import WechatG
+from wechatG import WechatG#引入全局类
+from send.send import Send#引入发送信息的类
 import urllib2
 import time
 import json
@@ -8,15 +9,15 @@ import os
 class Wechatqy(WechatG):
 	"微信企业号的类"
 	def __init__(self):
-		self.token=""
-	
+		self.send=Send()#用来发送消息的
+
 	#config
 	def conf(self,corpid,corpsecret):
 		self.corpid=corpid
 		self.corpsecret=corpsecret
-		self.token=self.read_token()
+		WechatG.access_token=self.read_token()
 		
-	#get access_token
+	#从服务器里获取access_token
 	def get_token(self):
 		token=urllib2.urlopen("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid="+self.corpid+"&corpsecret="+self.corpsecret)
 		nowTime=int(time.time())
@@ -27,7 +28,7 @@ class Wechatqy(WechatG):
 		tokenFile.write(json.dumps(tokenDict))
 		return tokenDict["access_token"]
 	
-	#read access_token
+	#读取 access_token，可能从本地取值
 	def read_token(self):
 		if os.path.exists("access_token"):
 			tokenFile=open("access_token","a+")
@@ -40,24 +41,20 @@ class Wechatqy(WechatG):
 		else:
 			return self.get_token()
 		
-	#access_token
+	#设置或者读取access_token
 	def access_token(self,token=""):
 		"token为空，取token，否则设置token"
 		if token!="":
-			self.token=token
+			WechatG.access_token=token
 		else:
-			if self.token!="":
-				return self.token
+			if WechatG.access_token!="":
+				return WechatG.access_token
 			else:
 				print "请先配置corpid和corpsecret"
-	def send(self):
-		pass		
 if __name__=='__main__':
-	#print "调用自己"
 	wechat=Wechatqy()
 	wechat.conf("wx650b23fa694c8ff7","w_oV6aNTMaNUrOjwah0zupDxnWeYmtDR3QiUcD3Uqf584CpwYPB-U79QuhLLD_eJ")
-	print wechat.access_token()
-	#wechat.test()
+	print wechat.send.text(0,"1000000107","这是一条测试的消息，收到请忽视")
 
 
 
