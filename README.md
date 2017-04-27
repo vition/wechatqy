@@ -1,4 +1,4 @@
-~hua](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=756974886,961366564&fm=58)
+![mahua](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=756974886,961366564&fm=58)
 ##wechatqy是什么?
 一个用python写的微信企业号支持库
 
