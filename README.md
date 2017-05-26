@@ -21,4 +21,8 @@
     wechat.conf("corpid","corpsecret")
     print wechat.send.text(0,"用户id","这是一条测试的消息，收到请忽视")
 ```
+> 用户ID可以使用列表，比如
 
+```python
+    print wechat.send.text(0,['用户1','用户2'],"发送给多个用户)
+```
