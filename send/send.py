@@ -10,7 +10,18 @@ class Send (WechatG):
 	
 	#text消息
 	def text(self,agentid,touser,content,toparty="",totag=""):
-		data={"touser":touser,"agentid":agentid,"msgtype":"text","text":{"content":content}}
+		userid=''
+
+		if type(touser)==str:
+			userid=touser
+		elif type(touser)==list:
+			for x in touser:
+				userid+=x+','
+			userid=userid.rstrip(',')
+		else:
+			userid='all'
+
+		data={"touser":userid,"agentid":agentid,"msgtype":"text","text":{"content":content}}
 		if toparty!="":	data["toparty"]=toparty
 		if totag!="": data["totag"]=totag
 
