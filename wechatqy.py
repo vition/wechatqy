@@ -55,7 +55,7 @@ class Wechatqy(WechatG):
 				print "请先配置corpid和corpsecret"
 if __name__=='__main__':
 	wechat=Wechatqy()
-	wechat.conf("wx650b23fa694c8ff7","w_oV6aNTMaNUrOjwah0zupDxnWeYmtDR3QiUcD3Uqf584CpwYPB-U79QuhLLD_eJ")
+	wechat.conf("","")
 	#发送测试
 	#print wechat.send.text(0,"1000000107","这是一条测试的消息，收到请忽视")
 	#获取素材测试
